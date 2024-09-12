@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Человек, который прыгал за мясом</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            padding: 20px;
+        }
+        .image {
+            width: 242px;
+            height: 734px;
+        }
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .text {
+            margin-left: 42px; /* Gap equal to the image width */
+            max-width: 500px; /* Adjust the text block width as needed */
+        }
+        .text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .text .signature {
+            font-size: 1rem;
+            color: gray;
+            font-style: italic;
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .image {
+                height: auto;
+                width: auto;
+                max-width: 100%;
+                max-height: 50vh;
+            }
+            .text {
+                margin-left: 0;
+                margin-top: 20px;
+                max-width: 100%;
+            }
+            .text h1 {
+                font-size: 2rem;
+            }
+            .text p {
+                font-size: 1rem;
+            }
+            .text .signature {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="harms_left.png" alt="Image">
+        </div>
+        <div class="text">
+            <h1>Человек, который прыгал за мясом</h1>
+            <p>О Викентии Карловиче мало что можно сказать определённого. Известно лишь, что жил он где-то между Апраксиным переулком и Гороховой.</p>
+            <p>Однажды, возвращаясь домой, Викентий Карлович посмотрел вверх и видит: летит кусок мяса. Пролетает прямо над ним. Недолго думая, Викентий Карлович прыгнул, однако не достал мяса — помешало узкое пальто.</p>
+            <p>Пальто это, кстати, досталось Викентию Карловичу с большим трудом. Ему пришлось обойти весь город, чтобы найти хоть немного подходящее. В этом пальто даже руки поднять было сложно, а уж прыгать за мясом — и вовсе беда.</p>
+            <p>И тут у автора сломались очки, а запасных не оказалось.</p>
+            <p class="signature">сентябрь 2024</p>
+        </div>
+    </div>
+</body>
+</html>
+
