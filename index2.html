@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Два друга</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100vh;
+            gap: 20px; /* Gap between image and text */
+        }
+        .image {
+            width: 100;
+            height: 734px;
+            flex-shrink: 0; /* Prevent the image from shrinking */
+        }
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .text {
+            max-width: 500px; /* Adjust text width as needed */
+        }
+        .text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .text .signature {
+            font-size: 1rem;
+            color: gray;
+            font-style: italic;
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0; /* Remove padding to align to the edge */
+                flex-direction: row;
+                gap: 20px; /* Keep 20px gap */
+                align-items: flex-start;
+            }
+            .image {
+                width: 100px; /* Keep fixed width */
+                height: 734px; /* Keep fixed height */
+            }
+            .text {
+                max-width: 100%;
+            }
+            .text h1 {
+                font-size: 1.8rem;
+            }
+            .text p {
+                font-size: 1rem;
+            }
+            .text .signature {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="hands.png" alt="Image">
+        </div>
+        <div class="text">
+            <h1>Два друга</h1>
+            <p>Встретились как-то два друга на Сенной площади. Один был повыше, другой — пониже. Тот, что повыше, говорит:</p>
+            <p>— Ба! Сколько лет, сколько зим!</p>
+            <p>А тот, что пониже, ему в ответ:</p>
+            <p>— Бо! Сколько зим, сколько лет!</p>
+            <p>Протянули друг другу руки, но вдруг тот, что пониже, как закричит:</p>
+            <p>— Да я вас и не знаю совершенно!</p>
+            <p>А тот, что повыше, отвечает спокойно:</p>
+            <p>— Я вас и знать не знаю! — и как лягнет друга. Но тот, что был пониже, не растерялся, выдернул руку и побежал по мостовой. А тот, что повыше, тоже не промах: пустился за ним вдогонку. И догнал без особых усилий, видно, был он натренирован в таких делах.</p>
+            <p>История заканчивается неприятно, и мне совершенно не хочется её продолжать.</p>
+            <p class="signature">&lt;сентябрь 2024&gt;</p>
+        </div>
+    </div>
+</body>
+</html>
+
