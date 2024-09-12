@@ -13,6 +13,7 @@
         html, body {
             height: 100%;
             width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         .container {
             display: flex;
@@ -20,12 +21,12 @@
             justify-content: flex-start;
             width: 100%;
             height: 100vh;
-            padding: 20px;
-            gap: 20px; /* The gap between the image and the text */
+            gap: 20px; /* Gap between image and text */
         }
         .image {
             width: 242px;
             height: 734px;
+            flex-shrink: 0; /* Prevent the image from shrinking */
         }
         .image img {
             width: 100%;
@@ -33,7 +34,7 @@
             object-fit: cover;
         }
         .text {
-            max-width: 500px; /* Adjust the text block width as needed */
+            max-width: 500px; /* Adjust text width as needed */
         }
         .text h1 {
             font-size: 2.5rem;
@@ -53,12 +54,14 @@
         /* Media queries for mobile responsiveness */
         @media (max-width: 768px) {
             .container {
-                flex-direction: row; /* Ensures image is always on the left */
+                padding: 0; /* Remove padding to align to the edge */
+                flex-direction: row;
+                gap: 20px; /* Keep 20px gap */
                 align-items: flex-start;
             }
             .image {
-                width: 121px; /* Scale the image down proportionally */
-                height: 367px;
+                width: 100px; /* Keep fixed width */
+                height: 734px; /* Keep fixed height */
             }
             .text {
                 max-width: 100%;
