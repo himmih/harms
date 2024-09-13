@@ -22,6 +22,7 @@
             width: 100%;
             height: 100vh;
             gap: 20px; /* Gap between image and text */
+	    padding-right: 2px; /* Gap between text and right side */
         }
         .image {
             width: 100;
@@ -35,6 +36,8 @@
         }
         .text {
             max-width: 500px; /* Adjust text width as needed */
+	    flex-grow: 1; /* Ensure text expands to fill the available space */
+            margin-top: 10px; /* Gap between text and top */
         }
         .text h1 {
             font-size: 2.5rem;
@@ -61,10 +64,11 @@
             }
             .image {
                 width: 100px; /* Keep fixed width */
-                height: 734px; /* Keep fixed height */
+                height: 1000px; /* Keep fixed height */
             }
             .text {
                 max-width: 100%;
+		padding-right: 2px; /* Add right padding on mobile */
             }
             .text h1 {
                 font-size: 1.8rem;
