@@ -21,9 +21,9 @@
             align-items: flex-start;
             justify-content: flex-start;
             width: 100%;
-            height: 100vh;
-            gap: 20px; /* Gap between image and text */
+	    min-height: calc(100vh - 80px);
 	    padding-right: 2px; /* Gap between text and right side */
+	    margin-bottom: 80px; /* Space for the navigation */
         }
         .image {
             width: 100;
@@ -60,12 +60,14 @@
              justify-content: space-between;
 	     align-items: center;
              position: fixed;
-             bottom: 20px; /* Position 123px from the bottom */
+	     bottom: 0; /* Stick to the bottom of the viewport */
              width: 100%;
              height: 100px;
              padding: 10px;
 	     background: transparent;
              z-index: 1000; /* Ensure it's above other content */
+             border: none; /* Remove any borders */
+             box-shadow: none; /* Remove the box-shadow */
         }
         .navigation img {
             width: 100px;
@@ -122,6 +124,8 @@
         <img src="right-arrow.png" alt="Next" class="next" onclick="navigate(1)">
     </div>
     <script>
+        const PREFIX = '/harms'; // Adjust this to your actual prefix
+
         function updateNavigation() {
             const url = window.location.pathname;
             const pageNum = parseInt(url.match(/index(\d+)\.html/)[1], 10);
@@ -136,19 +140,25 @@
                 prevButton.classList.remove('active');
             }
 
-            if (document.querySelector(`index${pageNum + 1}.html`)) {
-                nextButton.classList.add('active');
-                nextButton.onclick = () => navigate(1);
-            } else {
-                nextButton.classList.remove('active');
-            }
+            // Check if the next page exists
+            const nextPage = `${PREFIX}/index${pageNum + 1}.html`;
+            fetch(nextPage, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        nextButton.classList.add('active');
+                        nextButton.onclick = () => navigate(1);
+                    } else {
+                        nextButton.classList.remove('active');
+                    }
+                });
+
         }
 
         function navigate(direction) {
             const url = window.location.pathname;
             const pageNum = parseInt(url.match(/index(\d+)\.html/)[1], 10);
             const newPageNum = pageNum + direction;
-            window.location.href = `/index${newPageNum}.html`;
+            window.location.href = `${PREFIX}/index${newPageNum}.html`;
         }
 
         window.onload = updateNavigation;
