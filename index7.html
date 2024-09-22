@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico">
+    <title>Широкая душа</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+	    min-height: calc(100vh - 80px);
+	    padding-right: 2px; /* Gap between text and right side */
+	    margin-bottom: 80px; /* Space for the navigation */
+        }
+        .image {
+            width: 100;
+            height: 100;
+            flex-shrink: 0; /* Prevent the image from shrinking */
+        }
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .text {
+            max-width: 500px; /* Adjust text width as needed */
+	    flex-grow: 1; /* Ensure text expands to fill the available space */
+            margin-top: 10px; /* Gap between text and top */
+        }
+        .text h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .text .signature {
+	    text-align: right;
+            font-size: 1rem;
+            color: gray;
+            font-style: italic;
+        }
+        .navigation {
+	     display: flex;
+             justify-content: space-between;
+	     align-items: center;
+             position: fixed;
+	     bottom: 0; /* Stick to the bottom of the viewport */
+             width: 100%;
+             height: 100px;
+             padding: 10px;
+	     background: transparent;
+             z-index: 1000; /* Ensure it's above other content */
+             border: none; /* Remove any borders */
+             box-shadow: none; /* Remove the box-shadow */
+        }
+        .navigation img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .prev, .next {
+            visibility: hidden; /* Hide buttons by default */
+        }
+        .prev.active, .next.active {
+            visibility: visible; /* Show buttons if active */
+        }
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0; /* Remove padding to align to the edge */
+                flex-direction: row;
+                gap: 20px; /* Keep 20px gap */
+                align-items: flex-start;
+            }
+            .image {
+                width: 100px; /* Keep fixed width */
+                height: 734px; /* Keep fixed height */
+            }
+            .text {
+                max-width: 100%;
+		padding-right: 2px; /* Add right padding on mobile */
+            }
+            .text h1 {
+                font-size: 1.8rem;
+            }
+            .text p {
+                font-size: 1rem;
+            }
+            .text .signature {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="house.png" alt="Image">
+        </div>
+        <div class="text">
+            <h1>Широкая душа</h1>
+	    <p>Фёдор был человеком широкой души и очень любил женское общество. Возможно, именно поэтому он женился так рано. Тесть его был настолько взволнован этим событием, что подарил молодожёнам большую квартиру в высотном доме с видом на весь город.</p>
+            <p>Вечером Фёдор вернулся из женского общества и получил удар графином по лицу. Это ему не понравилось. Поступок жены был осуждён и в женском обществе. Но Фёдор не успел об этом рассказать своей первой жене, так как получил ещё несколько весьма болезненных ударов графином.</p>
+            <p>Вторая жена Фёдора была хрупкой молодой особой с острыми чертами лица. В женском обществе описание жены высоко оценили. Но как только Фёдор явился домой, чтобы об этом рассказать, он получил такой сильный удар графином, что потерял сознание.</p>
+            <p>Очнулся Фёдор не в женском обществе, а в обществе, которое показалось ему совсем неприятным. Он поспешил удалиться оттуда, сказав на проходной, что идёт за сигаретами.</p>
+            <p>Когда же он вернулся к женскому обществу, его там не узнали и за шиворот вытолкали на улицу. Фёдор постоял немного, глядя на свет из окон, подтянул тапочек на левой ноге и двинулся вдоль Фонтанки, размышляя о том, что было известно лишь ему одному.</p>
+            <p class="signature">/22.09.2024/</p>
+        </div>
+    </div>
+       <div class="navigation">
+        <img src="left-arrow.png" alt="Previous" class="prev" onclick="navigate(-1)">
+        <img src="right-arrow.png" alt="Next" class="next" onclick="navigate(1)">
+    </div>
+    <script>
+        const PREFIX = '/harms'; // Adjust this to your actual prefix
+
+        function updateNavigation() {
+            const url = window.location.pathname;
+            const pageNum = parseInt(url.match(/index(\d+)\.html/)[1], 10);
+
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+
+            if (pageNum > 1) {
+                prevButton.classList.add('active');
+                prevButton.onclick = () => navigate(-1);
+            } else {
+                prevButton.classList.remove('active');
+            }
+
+            // Check if the next page exists
+            const nextPage = `${PREFIX}/index${pageNum + 1}.html`;
+            fetch(nextPage, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        nextButton.classList.add('active');
+                        nextButton.onclick = () => navigate(1);
+                    } else {
+                        nextButton.classList.remove('active');
+                    }
+                });
+
+        }
+
+        function navigate(direction) {
+            const url = window.location.pathname;
+            const pageNum = parseInt(url.match(/index(\d+)\.html/)[1], 10);
+            const newPageNum = pageNum + direction;
+            window.location.href = `${PREFIX}/index${newPageNum}.html`;
+        }
+
+        window.onload = updateNavigation;
+    </script>
+</body>
+</html>
+
